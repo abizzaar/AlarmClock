@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     TextView updateText;
     Context context;
     Calendar calendar;
+    Calendar currentTimeCalendar;
     PendingIntent pendingIntent;
     Intent myIntent;
-    long currentTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
         updateText = (TextView) findViewById(R.id.updateText);
         Button alarmOn = (Button) findViewById(R.id.alarmOn);
         Button alarmOff = (Button) findViewById(R.id.alarmOff);
-        calendar = Calendar.getInstance();
+        currentTimeCalendar = Calendar.getInstance();
 
         // create intent for Alarm Receiver class
         myIntent = new Intent(this, AlarmReceiver.class);
 
-        currentTime = calendar.getTimeInMillis();
+
 
         // when alarmOn button is clicked
         alarmOn.setOnClickListener(
@@ -58,13 +58,17 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
 
                         // set calendar stuff
+                        calendar = Calendar.getInstance();
                         calendar.set(Calendar.HOUR_OF_DAY, timePicker.getHour());
                         calendar.set(Calendar.MINUTE, timePicker.getMinute());
                         calendar.set(Calendar.SECOND, 0);
 
                         // track for if alarm is being set for new day
                         // TO DO!
+                        int presentMinutes = currentTimeCalendar.get(Calendar.HOUR_OF_DAY) * 60 + currentTimeCalendar.get(Calendar.MINUTE);
+                        int alarmMinutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
 
+                        if (alarmMinutes < presentMinutes) calendar.add(Calendar.DAY_OF_MONTH, 1);
 
                         // get minute and hour and display it
                         int hour = timePicker.getHour();
@@ -81,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
                         // delay intent until time set in alarm
                         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                        Log.i("Calendar time is", String.valueOf(calendar.get(Calendar.HOUR_OF_DAY)) + " " + String.valueOf(calendar.get(Calendar.MINUTE)));
-
+                        Log.i("Calendar time is", String.valueOf(alarmMinutes) + " minutes");
+                        Log.i("Current time", String.valueOf(presentMinutes));
                         // set the Alarm Manager
                         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
                     }
@@ -98,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 myIntent.putExtra("extra", false);
                 sendBroadcast(myIntent);
 
-                alarmManager.cancel(pendingIntent);
+                if (pendingIntent != null )alarmManager.cancel(pendingIntent);
             }
         });
 
