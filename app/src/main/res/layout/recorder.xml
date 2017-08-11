@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recorderLayout"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:layout_alignWithParentIfMissing="false"
+    android:layout_centerHorizontal="false"
+    android:layout_centerInParent="false"
+    android:layout_centerVertical="false"
+    android:layout_gravity="center"
+    android:background="@android:drawable/alert_light_frame"
+    android:elevation="19dp"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme.PopupOverlay"
+    android:visibility="visible"
+    app:layout_anchorGravity="center">
+
+    <Button
+        android:id="@+id/recordButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="91dp"
+        android:layout_height="49dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="117dp"
+        android:text="Record"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+</android.support.constraint.ConstraintLayout>

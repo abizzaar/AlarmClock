@@ -12,6 +12,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.security.Provider;
 
 /**
@@ -20,7 +21,7 @@ import java.security.Provider;
 
 public class PlayRingtone extends Service {
 
-    MediaPlayer mediaSong;
+    MediaPlayer mediaPlayer;
     boolean musicIsPlaying = false;
 
     @Nullable
@@ -40,12 +41,17 @@ public class PlayRingtone extends Service {
         Log.i("startId is : ", String.valueOf(startId));
 
 
-
-
-
         if (startId == 1 && !musicIsPlaying) {
-            mediaSong = MediaPlayer.create(this, R.raw.song);
-            mediaSong.start();
+
+
+            mediaPlayer = new MediaPlayer();
+            try {
+                mediaPlayer.setDataSource(intent.getExtras().getString("songPath"));
+                mediaPlayer.setLooping(true);
+                mediaPlayer.prepare();
+                mediaPlayer.start();
+            } catch (IOException e) {}
+
             musicIsPlaying = true;
             Log.i("music was not playing", "music is now playing");
 
@@ -66,12 +72,14 @@ public class PlayRingtone extends Service {
             notificationManager.notify(0, notificationPopup);
         }
         else if (startId == 0 && musicIsPlaying) {
-            mediaSong.stop();
-            mediaSong.reset();
+            mediaPlayer.stop();
+            mediaPlayer.reset();
             musicIsPlaying = false;
             Log.i("music was playing", "it is now not playing");
         }
-        else Log.i("no change to", "state of music");
+        else {
+            Log.i("no change to", "state of music");
+        }
 
 
         return START_NOT_STICKY;

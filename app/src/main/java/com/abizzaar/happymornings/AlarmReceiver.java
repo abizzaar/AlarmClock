@@ -19,9 +19,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         Log.e("The Receiver is working", "Nice!");
 
         boolean extra = intent.getExtras().getBoolean("extra");
+        String songPath = intent.getExtras().getString("songPath");
 
         Intent serviceIntent = new Intent(context, PlayRingtone.class);
         serviceIntent.putExtra("extra", extra);
+        serviceIntent.putExtra("songPath", songPath);
         context.startService(serviceIntent);
 
     }
