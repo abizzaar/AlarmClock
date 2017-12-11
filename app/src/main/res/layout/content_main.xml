@@ -58,7 +58,7 @@
 
     <TimePicker
         android:id="@+id/timePicker"
-        android:layout_width="358dp"
+        android:layout_width="0dp"
         android:layout_height="361dp"
         android:layout_marginTop="-1dp"
         android:amPmBackgroundColor="@android:color/holo_blue_bright"
@@ -66,8 +66,6 @@
         android:background="@color/colorPrimary"
         android:headerBackground="@android:color/background_dark"
         android:numbersSelectorColor="@color/colorPrimaryDark"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
