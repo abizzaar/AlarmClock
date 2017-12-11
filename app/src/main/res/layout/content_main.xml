@@ -61,13 +61,18 @@
         android:layout_width="358dp"
         android:layout_height="361dp"
         android:layout_marginTop="-1dp"
+        android:amPmBackgroundColor="@android:color/holo_blue_bright"
+        android:amPmTextColor="@android:color/background_dark"
+        android:background="@color/colorPrimary"
+        android:headerBackground="@android:color/background_dark"
+        android:numbersSelectorColor="@color/colorPrimaryDark"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/alarmOn"
-        android:layout_width="157dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:layout_marginLeft="16dp"

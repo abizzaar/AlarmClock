@@ -1,1 +1,1 @@
-# AlarmClock
+A basic alarm clock app for Android that lets you record a voice clip when you set an alarm, which plays when your alarm rings. Waking up is really hard— make it easier by reminding yourself of the beautiful experiences waiting for you once you get out of bed.

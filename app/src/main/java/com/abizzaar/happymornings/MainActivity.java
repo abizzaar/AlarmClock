@@ -31,13 +31,10 @@ public class MainActivity extends AppCompatActivity {
     AlarmManager alarmManager;
     TimePicker timePicker;
     TextView updateText;
-    Context context;
     Calendar calendar;
     Calendar currentTimeCalendar;
     PendingIntent pendingIntent;
     Intent myIntent;
-    Intent recordIntent;
-
 
     // ringtone stuff
     private static final String LOG_TAG = "AudioRecordTest";
